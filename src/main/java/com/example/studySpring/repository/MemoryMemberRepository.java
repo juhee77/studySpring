@@ -1,9 +1,13 @@
 package com.example.studySpring.repository;
 
 import com.example.studySpring.domain.Member;
+import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
+
+//스프링에서 처리하는 정형화된 패텅 (스프링이 알아서 잡아줌)
+@Repository
 public class MemoryMemberRepository implements MemberRepository {
 
     private static Map<Long, Member> store = new HashMap<>();

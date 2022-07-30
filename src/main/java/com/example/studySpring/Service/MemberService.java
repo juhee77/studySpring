@@ -1,16 +1,22 @@
-package Service;
+package com.example.studySpring.Service;
 
 import com.example.studySpring.domain.Member;
 import com.example.studySpring.repository.MemberRepository;
-import com.example.studySpring.repository.MemoryMemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 //command + shift +t 자동으로 테스트 케이스 생성
+// 스프링이 알아차리게 해준다.
+
+@Service
 public class MemberService {
     private final MemberRepository memberRepository;
 
+    //스프링 컨베이너 에 있는거 자동 주입
+    @Autowired
     public MemberService(MemberRepository memberRepository) { //외부에서 넣어주게 변경 하도록(DI)
         this.memberRepository = memberRepository;
     }

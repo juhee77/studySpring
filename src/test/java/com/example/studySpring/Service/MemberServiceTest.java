@@ -1,4 +1,4 @@
-package Service;
+package com.example.studySpring.Service;
 
 import com.example.studySpring.domain.Member;
 import com.example.studySpring.repository.MemoryMemberRepository;

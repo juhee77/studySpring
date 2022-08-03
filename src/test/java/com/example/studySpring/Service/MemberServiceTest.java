@@ -39,7 +39,7 @@ class MemberServiceTest {
         Long saveId = memberService.join(member);
 
         //Then
-        Member findMember = memberRepository.findbyId(saveId).get();
+        Member findMember = memberRepository.findById(saveId).get();
         //assertThat(member.getName()).isEqualTo(findMember.getName());
         assertEquals(member.getName(), findMember.getName());
         //option  + enter static import 로 변경 가능

@@ -35,7 +35,7 @@ public class JdbcTemplateMemberRepository implements MemberRepository {
     }
 
     @Override
-    public Optional<Member> findbyId(Long Id) {
+    public Optional<Member> findById(Long Id) {
         List<Member> result = jdbcTemplate.query("select * from member where id = ?", memberRowMapper(), Id);
         return result.stream().findAny();
     }
@@ -47,7 +47,7 @@ public class JdbcTemplateMemberRepository implements MemberRepository {
     }
 
     @Override
-    public Optional<Member> findbyName(String Name) {
+    public Optional<Member> findByName(String Name) {
         List<Member> result = jdbcTemplate.query("select * from member where name = ?", memberRowMapper(), Name);
         return result.stream().findAny();
     }
@@ -60,4 +60,4 @@ public class JdbcTemplateMemberRepository implements MemberRepository {
             return member;
         };
     }
-}
+}//.h2/sh

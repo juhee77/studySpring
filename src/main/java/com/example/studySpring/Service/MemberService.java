@@ -4,6 +4,7 @@ import com.example.studySpring.domain.Member;
 import com.example.studySpring.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,12 +12,12 @@ import java.util.Optional;
 //command + shift +t 자동으로 테스트 케이스 생성
 // 스프링이 알아차리게 해준다.
 
-@Service
+@Transactional
 public class MemberService {
     private final MemberRepository memberRepository;
 
     //스프링 컨베이너 에 있는거 자동 주입
-    @Autowired
+    //@Autowired
     public MemberService(MemberRepository memberRepository) { //외부에서 넣어주게 변경 하도록(DI)
         this.memberRepository = memberRepository;
     }
@@ -44,7 +45,7 @@ public class MemberService {
     }
 
     private void validateDuplicateMember(Member member) {
-        memberRepository.findbyName(member.getName())
+        memberRepository.findByName(member.getName())
                 .ifPresent(m -> {
                     throw new IllegalStateException("이미 존재하는 회원입니다.");
                 });
@@ -58,6 +59,6 @@ public class MemberService {
     }
 
     public Optional<Member> findOne(Long memberId) {
-        return memberRepository.findbyId(memberId);
+        return memberRepository.findById(memberId);
     }
 }

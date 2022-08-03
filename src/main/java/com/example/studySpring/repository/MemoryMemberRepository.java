@@ -7,7 +7,7 @@ import java.util.*;
 
 
 //스프링에서 처리하는 정형화된 패텅 (스프링이 알아서 잡아줌)
-@Repository
+//@Repository
 public class MemoryMemberRepository implements MemberRepository {
 
     private static Map<Long, Member> store = new HashMap<>();
@@ -21,12 +21,12 @@ public class MemoryMemberRepository implements MemberRepository {
     }
 
     @Override
-    public Optional<Member> findbyId(Long Id) {
+    public Optional<Member> findById(Long Id) {
         return  Optional.ofNullable(store.get(Id));
     }
 
     @Override
-    public Optional<Member> findbyName(String Name) {
+    public Optional<Member> findByName(String Name) {
         return store.values().stream().filter(member -> member.getName().equals(Name))
                 .findAny(); //map에서 돌려서 반환 된다.
     }

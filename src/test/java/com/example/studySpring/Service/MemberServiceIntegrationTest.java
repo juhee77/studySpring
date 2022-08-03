@@ -8,6 +8,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Commit;
+import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -16,16 +18,16 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest
 @Transactional
-
 class MemberServiceIntegrationTest {
 
     @Autowired
     MemberService memberService;
     @Autowired
     MemberRepository memberRepository;
-    //여기서 new 로 선언하면 다른 인스턴스 이므로 그냥 두고 외분에서 넣어주게 바꿔주기
+    //여기서 new 로 선언하면 다른  인스턴스 이므로 그냥 두고 외분에서 넣어주게 바꿔주기
 
-    @Test //테스트가 끝나면 롤백 되어서 다른 테스트를 반복해서 수행할수 있다. @commit 하면 끝나면 커밋한다.
+    //@Commit
+    @Test //테스트가 끝나면 롤백 되어서 다른 테스트를 반복해서 수행할수 있다. @commit  하면 끝나면 커밋한다.
     public void 회원가입() throws Exception {
 
 
@@ -37,7 +39,7 @@ class MemberServiceIntegrationTest {
         Long saveId = memberService.join(member);
 
         //Then
-        Member findMember = memberRepository.findbyId(saveId).get();
+        Member findMember = memberRepository.findById(saveId).get();
         //assertThat(member.getName()).isEqualTo(findMember.getName());
         assertEquals(member.getName(), findMember.getName());
         //option  + enter static import 로 변경 가능
